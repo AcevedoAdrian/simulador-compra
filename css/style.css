@@ -1,0 +1,95 @@
+body{
+  font-family: 'Bodoni Moda', serif;
+  font-size: 20px;
+}
+h1{
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 4rem;
+}
+h2{font-size: 2.5rem;margin-bottom: 1rem;}
+p{
+  font-size: 1.2rem;
+  color: #999;
+  line-height: 1.8;
+  margin-bottom:0 ;
+}
+
+section{
+  padding: 5rem 0;
+
+}
+
+
+.navbar{
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0,0, 0, .05);
+  min-height: 5rem;
+}
+
+.navbar a{
+  color: #1a1a1a;
+}
+.topmargin-xs{margin-top:1rem ;}
+.topmargin-sm{margin-top:2rem ;}
+.topmargin-lg{margin-top:13rem !important;}
+
+.nav-link:hover{
+  color: #ff0000;
+}
+
+ion-icon {
+  color: #ff0000;
+  /* --ionicon-stroke-width: 16px; */
+}
+.navbar-toggle {font-size: 2rem;}
+.navbar-toggle:focus{ outline: none;}
+
+.logo{
+  min-width: 8rem;
+  max-width: 9rem;
+}
+
+#home{
+  background-image: url('../img/home.jpg');
+  background-position: center;
+  background-size: cover;
+  padding-top: 4rem;
+  min-height:  40rem;
+  color: #fff;
+}
+
+#home p{
+  color: #fff;
+}
+
+.content-center {
+max-width: 40rem;
+margin: 0 auto 3rem auto;
+text-align: center;
+}
+
+.btn{
+  font-size: 14px;
+  padding: 15px 26px;
+  min-width: 160px;
+  border-radius:2px ;
+  display: inline-block;
+}
+
+.btn-l{
+  background-color: #fff;
+  color: #1a1a1a;
+  border: 2px solid #fff;
+}
+
+
+@media (max-width: 575.98px) { h1{font-size: 2rem; line-height: normal;} }
+
+@media (max-width: 767.98px) {  }
+
+@media (max-width: 991.98px) {  }
+
+@media (max-width: 1199.98px) {  }
+
+@media (max-width: 1399.98px) {  }

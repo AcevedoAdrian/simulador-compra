@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrito de Compras de ...</title>
+
+  <!-- Boostrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+
+  <!-- Tipografia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-lg">
+
+      <a class="navbar-brand" href="#">Details Deco </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <ion-icon name="grid-outline" size="large"></ion-icon>
+      </button>
+
+      <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id='inicio'>Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id='producto'>Producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="contacto">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="contacto">
+              <ion-icon name="cart-outline" size='large'></ion-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+
+  </nav>
+  <!-- FIN NAVBAR -->
+
+  <section id="home">
+    <div class="container ">
+      <div class="content-center topmargin-lg ">
+        <h1>El diseño es nuestro amor especial</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam perferendis blanditiis maiores dolorum
+          corporis itaque architecto eligendi nam ipsa quaerat, omnis animi veniam voluptates illo repellendus molestias
+          dignissimos cum quisquam.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portafolio">
+    <div class="container-fluid">
+      <div class="content-center">
+        <h2>TIENDA DE OBJETOS ÚNICOS</h2>
+        <p>Dónde el valor de la artesanal y lo natural cobra nuevo sentido en piezas especiales. Cada una marcada por el
+          amor, la historia y la impronta del artesano que las realiza.</p>
+      </div>
+    </div>
+  </section>
+  <section id="prodcuts">
+    <div class="container">
+      <div class="">
+<!--         
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-3"></div>
+          <div class="col-lg-3"></div>
+          <div class="col-lg-3"></div>
+        </div> -->
+        <div class="row row-cols-1 row-cols-md-3">
+          <div class="col mb-4">
+            <div class="card h-100 text-center">
+              <img src="./img/producto.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Producto</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus incidunt, dolorem soluta, itaque quidem deserunt corrupti in commodi ratione necessitatibus provident doloremque quam aut voluptas. Dolore suscipit unde reiciendis similique.</p>
+                <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100 text-center">
+              <img src="./img/producto.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Producto</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus incidunt, dolorem soluta, itaque quidem deserunt corrupti in commodi ratione necessitatibus provident doloremque quam aut voluptas. Dolore suscipit unde reiciendis similique.</p>
+                <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100 text-center">
+              <img src="./img/producto.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Producto</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus incidunt, dolorem soluta, itaque quidem deserunt corrupti in commodi ratione necessitatibus provident doloremque quam aut voluptas. Dolore suscipit unde reiciendis similique.</p>
+                <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100 text-center">
+              <img src="./img/producto.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Producto</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus incidunt, dolorem soluta, itaque quidem deserunt corrupti in commodi ratione necessitatibus provident doloremque quam aut voluptas. Dolore suscipit unde reiciendis similique.</p>
+                <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100 text-center">
+              <img src="./img/producto.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Producto</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus incidunt, dolorem soluta, itaque quidem deserunt corrupti in commodi ratione necessitatibus provident doloremque quam aut voluptas. Dolore suscipit unde reiciendis similique.</p>
+                <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100 text-center">
+              <img src="./img/producto.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Producto</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus incidunt, dolorem soluta, itaque quidem deserunt corrupti in commodi ratione necessitatibus provident doloremque quam aut voluptas. Dolore suscipit unde reiciendis similique.</p>
+                <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+          <div class="col mb-4">
+            <div class="card h-100 text-center">
+              <img src="./img/producto.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Producto</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus incidunt, dolorem soluta, itaque quidem deserunt corrupti in commodi ratione necessitatibus provident doloremque quam aut voluptas. Dolore suscipit unde reiciendis similique.</p>
+                <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              </div>
+            </div>
+          </div>
+       
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Boostrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
+  </script>
+  <!-- ionicicon -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- Mi script -->
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
