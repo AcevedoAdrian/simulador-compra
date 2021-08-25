@@ -1,13 +1,9 @@
-// calcular el monto total a pagar, suponiendo que ya tiene el producto en el carrito
-
-class Producto {
-  constructor(nombre, precio, stock = 0) {
-    this.nombre = nombre;
-    this.precio = precio;
-    this.stock = stock;
-  }
-
-}
+// Variables
+const btnAgregarCarrito = document.getElementById("lista-productos");
+const spanSubTotal = document.getElementById("sub-total");
+const btnVaciarCarrito = document.getElementById("vaciar-carrito")
+const contenedorCarrito = document.querySelector("#lista-carrito tbody");
+let coleccionProductos = [];
 
 class Carrito {
   constructor(producto) {
@@ -23,8 +19,10 @@ class Carrito {
 
     for (let i = 0; i < this.producto.length; i++) {
       this.subTotal += this.producto[i].precio * this.producto[i].cantidad;
+      console.log(this.producto[i].precio );
     }
-
+   
+    spanSubTotal.innerText = this.subTotal;
   }
 
   calcularEnvio() {
@@ -82,6 +80,7 @@ class Carrito {
   compraFinalizada() {
     alert(`Su compra son los siguientes productos: ${this.ordenarProductosPorPrecio()} \n La suma total es de: $${this.subTotal}. \n Sumando el envio y la forma de pago, hace un total de: $${this.formaDePago}`)
   }
+  
   ordenarProductosPorPrecio() {
     let porductosOrdenados = [...this.producto];
     porductosOrdenados.sort((a, b) => (a.precio - b.precio))
@@ -96,54 +95,90 @@ class Carrito {
 
   finalizarCompra() {
     this.calcularSubTotal();
-    this.calcularEnvio();
-    this.calcularFormaDePago();
-    this.compraFinalizada();
+    // this.calcularEnvio();
+    // this.calcularFormaDePago();
+    // this.compraFinalizada();
 
   }
 
 }
 
-// Creo un listado de productos de esta forma para no pedir por pantalla 
-const crearProductos = () => {
-  const listadoProdutos = [];
-  const nombresProductos = ['cortinas', 'posa vaso', 'centro de mesa', 'tazas verde', 'adorno de pared', 'mantel', 'tapiz'];
-  const preciosProductos = [320, 233, 2000, 600, 820, 3000, 2500];
-  const stockProdcutos = [2, 21, 6, 34, 23, 12];
 
-  for (let i = 0; i < nombresProductos.length; i++) {
-    const productoObjeto = new Producto(nombresProductos[i], preciosProductos[i], stockProdcutos[i]);
-    listadoProdutos.push(productoObjeto);
+
+//FUNCIONES 
+
+// FUNCION CAPTURA CUANDO AGREGAMOS UN ELEMENTO AL CARRITO
+function productoSeleccionado(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("btnAgregarCarrito")) {
+    const productoAgregado = e.target.parentElement.parentElement;
+    leerDatosDeProducto(productoAgregado);
+  }
+}
+// FUNCION QUE TOMA LOS DATOS DEL HTML Y LOS CONVIETE EN UN OBJETO Y CUENTA LOS PRODUCTOS REPETIDOS
+function leerDatosDeProducto(productoAgregado) {
+  datoProductos = {
+    imagen: productoAgregado.getElementsByTagName("img")[0].src,
+    nombre: productoAgregado.getElementsByTagName("h5")[0].textContent,
+    precio:parseInt(productoAgregado.getElementsByTagName("p")[0].textContent),
+    cantidad: 1
+  };
+
+  const existe = coleccionProductos.some(
+    (producto) => producto.nombre === datoProductos.nombre
+  );
+
+  if (existe) {
+    //actualizamos la cantidad
+    const productosListaSinCopia = coleccionProductos.map((producto) => {
+      if (producto.nombre === datoProductos.nombre) {
+        producto.cantidad++;
+        return producto;
+      } else {
+        return producto;
+      }
+    });
+  } else {
+    //agrega elemento al arreglo de carrito
+    coleccionProductos = [...coleccionProductos, datoProductos];
   }
 
-  return listadoProdutos;
-
+  console.log(coleccionProductos);
+ 
+  let carrito = new Carrito(coleccionProductos);
+  carrito.finalizarCompra();
+  carritoHTML();
 }
 
-// simulador de seleccion de productos
-const simularSeleccionDeProducto = (productosEnStock) => {
-  const compra = [];
-  let productoSeleccionado = {}
-  for (let i = 0; i < productosEnStock.length; i++) {
-    // ((i % 2) === 0) ? productosSeleccionados.push(ListadoProdutos[i] ): null;
-    if ((i % 2) === 0) {
-      productoSeleccionado = {
-        ...productosEnStock[i]
-      };
-      // productoSeleccionado.cantidad = Math.round(Math.random() * 11);
-      productoSeleccionado.cantidad = Math.round(Math.random() * (10 - 1) +1);
-      compra.push(productoSeleccionado);
-    }
+// FUNCION QUE PINTA LO QUE TENEMOS EN EL ARRAY DE PRODUCTOS Y LOS PINTA EN EL HTML
+function carritoHTML() {
+  // // limpiar el html
+  limpiarHTML();
+  //recorre el carrito y genera el html
+  coleccionProductos.forEach((producto) => {
+    const { imagen, nombre, precio, cantidad } = producto;
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><img src='${imagen}' width='100'></td>
+      <td>${nombre}</td>
+      <td>${precio}</td>
+      <td>${cantidad}</td>
+      
+    `;
+    contenedorCarrito.appendChild(row);
+  });
+}
+
+// FUNCION QUE QUITA ELEMENTO DEL HTML
+function limpiarHTML() {
+  while (contenedorCarrito.firstChild) {
+    contenedorCarrito.removeChild(contenedorCarrito.firstChild);
   }
-  return compra;
 }
 
-
-
-
-
-//const compra = new Carrito(producto1, 2);
-const productosEnStock = crearProductos()
-const compra = simularSeleccionDeProducto(productosEnStock);
-const carritoCompra = new Carrito(compra)
-carritoCompra.finalizarCompra();
+// ADDEVENTLISTENER
+btnAgregarCarrito.addEventListener("click", productoSeleccionado);
+btnVaciarCarrito.addEventListener("click", ()=>{
+    // eliminamos todo el HTML
+    limpiarHTML();
+});
