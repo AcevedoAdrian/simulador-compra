@@ -50,32 +50,41 @@
               <ion-icon name="cart-outline" size='large'></ion-icon>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div id="carrito">
-                <table id="lista-carrito" class="table table-striped  w-100 p-3">
-                  <thead>
-                    <tr>
-                      <th scope="col">Imagen</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Precio</th>
-                      <th scope="col">Cantidad</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-                <div class="">
-                  <span class="pull-left text-left">
+              <div class="container" id="carrito">
+                <div class="col-12">
+                  <table id="lista-carrito" class="table table-striped  w-100 p-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+
+                <div class="col-12 pt-5">
+                  <input type="text" name='codigo-postal' id="codigo-postal" class="form-control" placeholder="Ingrese su codigo postal de destino">
+                  <button href="#" id="calcular-envio" role="button" class="btn btn-outline-secondary ">Calcular Envio</button>
+                           
+                </div>
+                <div class="col-12 pt-5">
+                  <h5 class="pull-left text-left">
                     Subtotal
-                    <small class=""> (sin envío)</small>
-                    :
-                  </span>
-                  <span  id="sub-total">$0</span>
+                    <small> (sin envío)</small>
+                    :<span>$</span><span id="sub-total">0</span></span>
+                  </h5>
+                  
+                  <span class="costo-envio">Costo del envio: </span><span id="costoEnvio"></span></span>   
                 </div>
-                <div class="">
-                  <input type="text">
-                  <a href="#" id="calcular-envio" role="button" class="btn btn-light  btn-sm">Calcular Envio</a>
+                
+                <div class="col-12 pt-5">
+                  <a href="#" id="vaciar-carrito" role="button" class="btn btn-success  btn-lg btn-block">Vaciar
+                    Carrito</a>
                 </div>
-                <a href="#" id="vaciar-carrito" role="button" class="btn btn-success  btn-lg btn-block">Vaciar Carrito</a>
               </div>
             </div>
             </a>
@@ -88,8 +97,10 @@
   </nav>
   <!-- FIN NAVBAR -->
 
+
   <section id="home">
     <div class="container ">
+
       <div class="content-center topmargin-lg ">
         <h1>El diseño es nuestro amor especial</h1>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam perferendis blanditiis maiores dolorum
@@ -110,10 +121,10 @@
   </section>
   <section id="prodcuts">
     <div class="container">
-      <div class="" id="lista-productos">
+      <div  id="lista-productos">
 
         <div class="row row-cols-1 row-cols-md-3">
-
+<!-- 
           <div class="col mb-3">
             <div class="card h-100 text-center">
               <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
@@ -152,7 +163,7 @@
               <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
               <div class="card-body">
                 <h5 class="producto-titulo">Tapiz Cata</h5>
-                
+
                 <p class="producto-precio">4800</p>
                 <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
               </div>
@@ -179,7 +190,7 @@
                 <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -203,8 +214,10 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <!-- Mi script -->
+  <script src="./js/productos.js"></script>
+  <script src="./js/cargar-productos.js"></script>
   <script src="./js/main.js"></script>
- 
+
 </body>
 
 </html>
