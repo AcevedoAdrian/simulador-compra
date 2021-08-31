@@ -1,50 +1,50 @@
 const productosEnStock = [
   {
-    nombre:'Fenix',
+    nombre:'FELIX',
     precio:200,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/FELIX.jpeg',
     id: 2
   },
   {
-    nombre:'Fenix',
+    nombre:'JAZMIN',
     precio:320,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/JAZMIN.jpeg',
     id: 3
   },
   {
-    nombre:'Fenix',
+    nombre:'JULITA',
     precio:500,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/JULITA.jpeg',
     id: 4
   },
   {
-    nombre:'Fenix',
+    nombre:'LAMPARA MODELO ALBA',
     precio:800,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/LAMPARA-MODELO-ALBA.jpeg',
     id: 5
   },
   {
-    nombre:'Fenix',
+    nombre:'MATE Y PORTAMATE PEDRITO',
     precio:1200,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/MATE-PORTAMATE-PEDRITO.jpeg',
     id: 6
   },
   {
-    nombre:'Fenix',
+    nombre:'OLIVIA',
     precio:3200,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/OLIVIA.jpeg',
     id: 7
   },
   {
-    nombre:'Fenix',
+    nombre:'SIMONA',
     precio:700,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/SIMONA.jpeg',
     id: 8
   },
   {
-    nombre:'Fenix',
+    nombre:'AMANDA',
     precio:100,
-    imagen:'./img/producto.jpg',
+    imagen:'./img/AMANDA.jpg',
     id: 9
   }
 
