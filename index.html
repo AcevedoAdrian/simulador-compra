@@ -67,9 +67,11 @@
                 </div>
 
                 <div class="col-12 pt-5">
-                  <input type="text" name='codigo-postal' id="codigo-postal" class="form-control" placeholder="Ingrese su codigo postal de destino">
-                  <button href="#" id="calcular-envio" role="button" class="btn btn-outline-secondary ">Calcular Envio</button>
-                           
+                  <input type="text" name='codigo-postal' id="codigo-postal" class="form-control"
+                    placeholder="Ingrese su codigo postal de destino">
+                  <button href="#" id="calcular-envio" role="button" class="btn btn-outline-secondary ">Calcular
+                    Envio</button>
+
                 </div>
                 <div class="col-12 pt-5">
                   <h5 class="pull-left text-left">
@@ -77,12 +79,17 @@
                     <small> (sin envío)</small>
                     :<span>$</span><span id="sub-total">0</span></span>
                   </h5>
-                  
-                  <span class="costo-envio">Costo del envio: </span><span id="costoEnvio"></span></span>   
+
+                  <span class="costo-envio">Costo del envio: </span><span id="costoEnvio"></span></span>
+                  <h5 class="pull-left text-left">
+                    Total: 
+                    <small> </small>
+                    :<span>$</span><span id="total">0</span></span>
+                  </h5>
                 </div>
                 
                 <div class="col-12 pt-5">
-                  <a href="#" id="vaciar-carrito" role="button" class="btn btn-success  btn-lg btn-block">Vaciar
+                  <a href="#" id="vaciar-carrito" role="button" class="btn  btn-lg btn-block btn-vaciar">Vaciar
                     Carrito</a>
                 </div>
               </div>
@@ -96,8 +103,11 @@
 
   </nav>
   <!-- FIN NAVBAR -->
-
-
+  <!-- <div class="container modal">
+    <div class="row">
+      <h4>CARRITO DE COMPRAS</h4>
+    </div>
+  </div> -->
   <section id="home">
     <div class="container ">
 
@@ -121,10 +131,10 @@
   </section>
   <section id="prodcuts">
     <div class="container">
-      <div  id="lista-productos">
+      <div id="lista-productos">
 
         <div class="row row-cols-1 row-cols-md-3">
-<!-- 
+          <!-- 
           <div class="col mb-3">
             <div class="card h-100 text-center">
               <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">

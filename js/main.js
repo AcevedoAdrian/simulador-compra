@@ -4,84 +4,27 @@ const spanSubTotal = document.getElementById("sub-total");
 const btnVaciarCarrito = document.getElementById("vaciar-carrito");
 const contenedorCarrito = document.querySelector("#lista-carrito tbody");
 const btnCalcularEnvio = document.querySelector("#calcular-envio");
-
+const spanTotal = document.querySelector("#total");
 let coleccionProductos = [];
-
-class Carrito {
-  constructor(producto) {
-    this.producto = producto;
-    this.precioEnvio = 0;
-    this.subTotal = 0;
-    this.formaDePago = 0;
-    this.total = 0;
-  }
-
-  calcularSubTotal() {
-    for (let i = 0; i < this.producto.length; i++) {
-      this.subTotal += this.producto[i].precio * this.producto[i].cantidad;
-    }
-
-    spanSubTotal.innerText = this.subTotal;
-  }
-
-  calcularFormaDePago() {
-    let campoValido = true;
-    do {
-      campoValido = true;
-      let total = this.subTotal + this.precioEnvio;
-      let opcionPago = parseInt(
-        prompt(
-          "Ingrese la forma de pago elgiendo la opcion: 1, 2 o 3 : \n 1- tarjeta 3 cuotas ( 15% interes) \n 2- tarjeta 6 cuotas ( 20% interes) \n 3- debito (5% descuento)"
-        )
-      );
-
-      switch (opcionPago) {
-        case 1:
-          this.formaDePago = total * 0.15 + total;
-          break;
-        case 2:
-          this.formaDePago = total * 0.2 + total;
-          break;
-        case 3:
-          this.formaDePago = total - total * 0.05;
-          break;
-        default:
-          campoValido = false;
-      }
-    } while (campoValido !== true);
-  }
-
-  compraFinalizada() {
-    alert(
-      `Su compra son los siguientes productos: ${this.ordenarProductosPorPrecio()} \n La suma total es de: $${
-        this.subTotal
-      }. \n Sumando el envio y la forma de pago, hace un total de: $${
-        this.formaDePago
-      }`
-    );
-  }
-
-  ordenarProductosPorPrecio() {
-    let porductosOrdenados = [...this.producto];
-    porductosOrdenados.sort((a, b) => a.precio - b.precio);
-
-    let respuestaCliente = "";
-    for (let i = 0; i < porductosOrdenados.length; i++) {
-      respuestaCliente = respuestaCliente.concat(
-        ` \n ${porductosOrdenados[i].nombre} precio: $${porductosOrdenados[i].precio} - Cantidad seleccionada: ${porductosOrdenados[i].cantidad} `
-      );
-    }
-    return respuestaCliente;
-  }
-
-  calcularCostoTotal() {
-    this.calcularSubTotal();
-    // this.calcularFormaDePago();
-    // this.compraFinalizada();
-  }
-}
+let subTotal = 0;
+let total = 0;
 
 //FUNCIONES
+
+// CALCULA EL SUBTOTAL DE LA CANTIDAD DE PRODUCTOS SELECCIONADOS * EL PRECIO
+function calcularSubTotal() {
+  if (coleccionProductos.length !== 0) {
+    for (let producto of coleccionProductos) {
+      subTotal += parseInt(producto.precio) * parseInt(producto.cantidad);
+  
+    }
+  } else {
+    subTotal = 0;
+  }
+  total = subTotal;
+  spanTotal.innerText = total;
+  spanSubTotal.innerText = subTotal;
+}
 
 // FUNCION CAPTURA CUANDO AGREGAMOS UN ELEMENTO AL CARRITO
 function productoSeleccionado(e) {
@@ -91,6 +34,7 @@ function productoSeleccionado(e) {
     leerDatosDeProducto(productoAgregado);
   }
 }
+
 // FUNCION QUE TOMA LOS DATOS DEL HTML Y LOS CONVIETE EN UN OBJETO Y CUENTA LOS PRODUCTOS REPETIDOS
 function leerDatosDeProducto(productoAgregado) {
   const idProductoSeleccionado = parseInt(
@@ -124,9 +68,12 @@ function leerDatosDeProducto(productoAgregado) {
     coleccionProductos = [...coleccionProductos, datoProductos];
   }
 
-  let carrito = new Carrito(coleccionProductos);
-  carrito.calcularCostoTotal();
   carritoHTML();
+}
+
+// Funcion para guardar en local storage
+function sincronizarLocalSotorage() {
+  localStorage.setItem("carrito", JSON.stringify(coleccionProductos));
 }
 
 // FUNCION QUE PINTA LO QUE TENEMOS EN EL ARRAY DE PRODUCTOS Y LOS PINTA EN EL HTML
@@ -146,9 +93,14 @@ function carritoHTML() {
     `;
     contenedorCarrito.appendChild(row);
   });
+
+  // Agrego el carrito de comprasal local stogare
+  sincronizarLocalSotorage();
+  calcularSubTotal();
 }
 
 // FUNCION QUE QUITA ELEMENTO DEL HTML
+// Limpiar storage
 function limpiarHTML() {
   while (contenedorCarrito.firstChild) {
     contenedorCarrito.removeChild(contenedorCarrito.firstChild);
@@ -158,7 +110,6 @@ function limpiarHTML() {
 // FUNCION CALCULA FORMA DE ENVIO, CALCULANDO EL COSTO A LA API DE ANDREANI
 async function calcularEnvio(e) {
   e.preventDefault;
-
   let cp = document.querySelector("#codigo-postal").value;
   if (cp !== "") {
     let url = `https://apis.andreani.com/v1/tarifas?cpDestino=${cp}&contrato=300006611&bultos[0][valorDeclarado]=1`;
@@ -168,6 +119,8 @@ async function calcularEnvio(e) {
     let precioEnvio = await precio.tarifaConIva.total;
     const costoEnvioHTML = document.querySelector("#costoEnvio");
     costoEnvioHTML.innerText = `${precioEnvio}`;
+    total+=parseInt(precioEnvio);
+    spanTotal.innerText = total;
   } else {
     alert("Ingrese un codigo postal");
   }
@@ -178,5 +131,26 @@ btnAgregarCarrito.addEventListener("click", productoSeleccionado);
 btnVaciarCarrito.addEventListener("click", () => {
   // eliminamos todo el HTML
   limpiarHTML();
+  coleccionProductos = [];
+  localStorage.clear();
+  calcularSubTotal();
 });
 btnCalcularEnvio.addEventListener("click", calcularEnvio);
+document.addEventListener("DOMContentLoaded", () => {
+  coleccionProductos = JSON.parse(localStorage.getItem("carrito")) || [];
+  carritoHTML();
+});
+
+// TO DO ornar el los productos por precio en el HTML
+//   ordenarProductosPorPrecio() {
+//     let porductosOrdenados = [...this.producto];
+//     porductosOrdenados.sort((a, b) => a.precio - b.precio);
+
+//     let respuestaCliente = "";
+//     for (let i = 0; i < porductosOrdenados.length; i++) {
+//       respuestaCliente = respuestaCliente.concat(
+//         ` \n ${porductosOrdenados[i].nombre} precio: $${porductosOrdenados[i].precio} - Cantidad seleccionada: ${porductosOrdenados[i].cantidad} `
+//       );
+//     }
+//     return respuestaCliente;
+//   }
