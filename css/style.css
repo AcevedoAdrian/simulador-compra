@@ -108,6 +108,21 @@ background-color: #F9F6F1;
 .btn-vaciar{
   background-color: #eab050;
 }
+.badge{
+  display: none;
+}
+.carrito-compras{
+  display: none;
+  background-color: #eab050;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 800px;
+  height: 100%;
+  z-index: 1048;
+  overflow-y: scroll;
+  text-align: left;
+}
 /* .modal {
   background: #f9f6f1;
   color: #000000;

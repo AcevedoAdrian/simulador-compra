@@ -48,6 +48,7 @@
             <a class="nav-link" href="#" id="carrito" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               <ion-icon name="cart-outline" size='large'></ion-icon>
+              <span class="badge badge-pill badge-danger"></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <div class="container" id="carrito">
@@ -103,11 +104,20 @@
 
   </nav>
   <!-- FIN NAVBAR -->
-  <!-- <div class="container modal">
-    <div class="row">
-      <h4>CARRITO DE COMPRAS</h4>
+  <section class="carrito-compras">
+    <div class="container">
+      <div class="col-12">
+        <div class="">
+          <h4 class="text-uppercase">Carrito de compras</h4>
+        </div>
+        <div class="">
+          <a href="#" class=""></a>
+        </div>
+        <hr>
+      </div>
     </div>
-  </div> -->
+  </section>
+
   <section id="home">
     <div class="container ">
 
@@ -134,73 +144,7 @@
       <div id="lista-productos">
 
         <div class="row row-cols-1 row-cols-md-3">
-          <!-- 
-          <div class="col mb-3">
-            <div class="card h-100 text-center">
-              <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
-              <div class="card-body">
-                <h5 class="producto-titulo">Fenix</h5>
-                <p class="producto-precio">8000</p>
-                <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col mb-3">
-            <div class="card h-100 text-center">
-              <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
-              <div class="card-body">
-                <h5 class="producto-titulo">Guirnalda</h5>
-                <p class="producto-precio">3000</p>
-                <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col mb-3">
-            <div class="card h-100 text-center">
-              <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
-              <div class="card-body">
-                <h5 class="producto-titulo">Lampra Olivia</h5>
-                <p class="producto-precio">6000</p>
-                <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col mb-3">
-            <div class="card h-100 text-center">
-              <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
-              <div class="card-body">
-                <h5 class="producto-titulo">Tapiz Cata</h5>
-
-                <p class="producto-precio">4800</p>
-                <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col mb-3">
-            <div class="card h-100 text-center">
-              <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
-              <div class="card-body">
-                <h5 class="producto-titulo">Bolso Bendita</h5>
-                <p class="producto-precio">3600</p>
-                <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col mb-3">
-            <div class="card h-100 text-center">
-              <img src="./img/producto.jpg" class="card-img-top producto-img" alt="...">
-              <div class="card-body">
-                <h5 class="producto-titulo">Tapiz Avellana</h5>
-                <p class="producto-precio">3125</p>
-                <a href="#" class="btn btn-primary btnAgregarCarrito">Añadir al carrito</a>
-              </div>
-            </div>
-          </div> -->
+          
 
         </div>
       </div>
@@ -223,6 +167,9 @@
   <!-- ionicicon -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <!-- Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
   <!-- Mi script -->
   <script src="./js/productos.js"></script>
   <script src="./js/cargar-productos.js"></script>

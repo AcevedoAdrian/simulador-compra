@@ -9,22 +9,38 @@ let coleccionProductos = [];
 let subTotal = 0;
 let total = 0;
 
-//FUNCIONES
 
-// CALCULA EL SUBTOTAL DE LA CANTIDAD DE PRODUCTOS SELECCIONADOS * EL PRECIO
-function calcularSubTotal() {
-  if (coleccionProductos.length !== 0) {
-    for (let producto of coleccionProductos) {
-      subTotal += parseInt(producto.precio) * parseInt(producto.cantidad);
-  
+//FUNCIONES
+    // JQUERY
+  // Muestra la cantidad de productos seleccionados en el carrito
+  function mostrarCantidadCarrito(){
+    if (coleccionProductos.length !== 0) {
+      let cantidadProductoCarrito= 0; 
+      for (let producto of coleccionProductos) {
+          cantidadProductoCarrito += parseInt(producto.cantidad); 
+      }
+      $('#carrito .badge').text(cantidadProductoCarrito);
+      $('#carrito .badge').show();
+    } else {
+      $('#carrito .badge').hide();
     }
-  } else {
-    subTotal = 0;
   }
-  total = subTotal;
-  spanTotal.innerText = total;
-  spanSubTotal.innerText = subTotal;
-}
+  // Elimina un curso del carrito
+
+  $('#lista-carrito').on('click',(e)=>{
+    e.preventDefault();
+    if (e.target.classList.contains("borrar-curso")) {
+      // console.log(e.target.getAttribute("data-id"));
+      const productoId =parseInt(e.target.getAttribute("data-id"));
+      // Filtro todos los productos que sean distintos al producto con id que fue seleccionado
+    coleccionProductos = coleccionProductos.filter((prodcuto) => prodcuto.id !== productoId);
+      carritoHTML();
+      }
+
+  });
+
+
+// VANILLLA JS
 
 // FUNCION CAPTURA CUANDO AGREGAMOS UN ELEMENTO AL CARRITO
 function productoSeleccionado(e) {
@@ -82,21 +98,39 @@ function carritoHTML() {
   limpiarHTML();
   //recorre el carrito y genera el html
   coleccionProductos.forEach((producto) => {
-    const { imagen, nombre, precio, cantidad } = producto;
+    const { imagen, nombre, precio, cantidad,id } = producto;
     const row = document.createElement("tr");
     row.innerHTML = `
       <td><img src='${imagen}' width='100'></td>
       <td>${nombre}</td>
       <td>${precio}</td>
       <td>${cantidad}</td>
-      
+      <td><a href="#" class="borrar-curso" data-id=${id}> X </a></td>
     `;
     contenedorCarrito.appendChild(row);
   });
 
   // Agrego el carrito de comprasal local stogare
   sincronizarLocalSotorage();
+  mostrarCantidadCarrito();
   calcularSubTotal();
+}
+
+
+// CALCULA EL SUBTOTAL DE LA CANTIDAD DE PRODUCTOS SELECCIONADOS * EL PRECIO
+function calcularSubTotal() {
+  subTotal = 0;
+  if (coleccionProductos.length !== 0) {
+    for (let producto of coleccionProductos) {
+      subTotal += parseInt(producto.precio) * parseInt(producto.cantidad);
+  
+    }
+  } else {
+    subTotal = 0;
+  }
+  total = subTotal;
+  spanTotal.innerText = total;
+  spanSubTotal.innerText = subTotal;
 }
 
 // FUNCION QUE QUITA ELEMENTO DEL HTML
@@ -127,6 +161,8 @@ async function calcularEnvio(e) {
 }
 
 // ADDEVENTLISTENER
+
+
 btnAgregarCarrito.addEventListener("click", productoSeleccionado);
 btnVaciarCarrito.addEventListener("click", () => {
   // eliminamos todo el HTML
@@ -140,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   coleccionProductos = JSON.parse(localStorage.getItem("carrito")) || [];
   carritoHTML();
 });
+
 
 // TO DO ornar el los productos por precio en el HTML
 //   ordenarProductosPorPrecio() {
