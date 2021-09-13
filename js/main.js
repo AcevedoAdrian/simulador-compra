@@ -103,9 +103,9 @@ function carritoHTML() {
     row.innerHTML = `
       <td><img src='${imagen}' width='100'></td>
       <td>${nombre}</td>
-      <td>${precio}</td>
+      <td>$${precio}</td>
       <td>${cantidad}</td>
-      <td><a href="#" class="borrar-curso" data-id=${id}> X </a></td>
+      <td><a href="#" class="borrar-curso" data-id=${id}>X</a></td>
     `;
     contenedorCarrito.appendChild(row);
   });
@@ -177,6 +177,17 @@ document.addEventListener("DOMContentLoaded", () => {
   carritoHTML();
 });
 
+ // Muestra el carrito
+ $("#carrito").on("click", (e) => {
+ e.preventDefault(); 
+ $(".carrito-compras").animate({width:'toggle'},350)});
+ 
+ // Oculta el carrito 
+ $("#btn-cerrar-carrito").on("click", (e) => {
+  e.preventDefault(); 
+  $(".carrito-compras").animate({width:'toggle'},350)
+
+});
 
 // TO DO ornar el los productos por precio en el HTML
 //   ordenarProductosPorPrecio() {

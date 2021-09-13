@@ -39,62 +39,17 @@
             <a class="nav-link" href="#" id='inicio'>Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id='producto'>Producto</a>
+            <a class="nav-link" href="#prodcuts" id='producto'>Producto</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="contacto">Contacto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="carrito" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
+            <a class="nav-link" href="#" id="carrito">
               <ion-icon name="cart-outline" size='large'></ion-icon>
               <span class="badge badge-pill badge-danger"></span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <div class="container" id="carrito">
-                <div class="col-12">
-                  <table id="lista-carrito" class="table table-striped  w-100 p-3">
-                    <thead>
-                      <tr>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Cantidad</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
 
-                <div class="col-12 pt-5">
-                  <input type="text" name='codigo-postal' id="codigo-postal" class="form-control"
-                    placeholder="Ingrese su codigo postal de destino">
-                  <button href="#" id="calcular-envio" role="button" class="btn btn-outline-secondary ">Calcular
-                    Envio</button>
-
-                </div>
-                <div class="col-12 pt-5">
-                  <h5 class="pull-left text-left">
-                    Subtotal
-                    <small> (sin envío)</small>
-                    :<span>$</span><span id="sub-total">0</span></span>
-                  </h5>
-
-                  <span class="costo-envio">Costo del envio: </span><span id="costoEnvio"></span></span>
-                  <h5 class="pull-left text-left">
-                    Total: 
-                    <small> </small>
-                    :<span>$</span><span id="total">0</span></span>
-                  </h5>
-                </div>
-                
-                <div class="col-12 pt-5">
-                  <a href="#" id="vaciar-carrito" role="button" class="btn  btn-lg btn-block btn-vaciar">Vaciar
-                    Carrito</a>
-                </div>
-              </div>
-            </div>
             </a>
           </li>
         </ul>
@@ -107,13 +62,68 @@
   <section class="carrito-compras">
     <div class="container">
       <div class="col-12">
-        <div class="">
+          
+        
+          <a href="#" id="btn-cerrar-carrito">
+            X
+          </a>
           <h4 class="text-uppercase">Carrito de compras</h4>
+    </div>
+      <hr>
+
+      <div class="col-12">
+
+        <div class="container" id="carrito">
+          <div class="col-12">
+            <table id="lista-carrito" class="table table-striped  w-100 p-3">
+              <!-- <thead>
+                  <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th></th>
+                  </tr>
+                </thead> -->
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="col-12">
+            <hr>
+            <h5>
+              <span class="pull-left text-left">
+                Subtotal
+                <small> (sin envío)
+                </small>: </span>
+              <span class="pull-right text-right">$<span id="sub-total">0</span></span>
+            </h5>
+          </div>
+          <div class="col-12 ">
+            <hr>
+            <input type="text" name='codigo-postal' id="codigo-postal"
+              placeholder="Ingrese su codigo postal de destino">
+            <button href="#" id="calcular-envio" role="button" class="btn btn-xs">Calcular
+              Envio</button>
+            <h5 class="pt-5">
+              <span class="costo-envio">Costo del envio: </span><span id="costoEnvio"></span></span>
+            </h5>
+          </div>
+          <div class="col-12 ">
+            <hr>
+
+            <h3 class="pull-left text-left">
+              Total:
+              <small> </small>
+              :<span>$</span><span id="total">0</span></span>
+            </h3>
+          </div>
+
+          <div class="col-12 pt-5">
+            <a href="#" id="vaciar-carrito" role="button" class="btn  btn-lg btn-block btn-vaciar">Vaciar
+              Carrito</a>
+          </div>
         </div>
-        <div class="">
-          <a href="#" class=""></a>
-        </div>
-        <hr>
+
       </div>
     </div>
   </section>
@@ -144,7 +154,7 @@
       <div id="lista-productos">
 
         <div class="row row-cols-1 row-cols-md-3">
-          
+
 
         </div>
       </div>
