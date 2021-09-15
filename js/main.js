@@ -9,36 +9,7 @@ let coleccionProductos = [];
 let subTotal = 0;
 let total = 0;
 
-
 //FUNCIONES
-    // JQUERY
-  // Muestra la cantidad de productos seleccionados en el carrito
-  function mostrarCantidadCarrito(){
-    if (coleccionProductos.length !== 0) {
-      let cantidadProductoCarrito= 0; 
-      for (let producto of coleccionProductos) {
-          cantidadProductoCarrito += parseInt(producto.cantidad); 
-      }
-      $('#carrito .badge').text(cantidadProductoCarrito);
-      $('#carrito .badge').show();
-    } else {
-      $('#carrito .badge').hide();
-    }
-  }
-  // Elimina un curso del carrito
-
-  $('#lista-carrito').on('click',(e)=>{
-    e.preventDefault();
-    if (e.target.classList.contains("borrar-curso")) {
-      // console.log(e.target.getAttribute("data-id"));
-      const productoId =parseInt(e.target.getAttribute("data-id"));
-      // Filtro todos los productos que sean distintos al producto con id que fue seleccionado
-    coleccionProductos = coleccionProductos.filter((prodcuto) => prodcuto.id !== productoId);
-      carritoHTML();
-      }
-
-  });
-
 
 // VANILLLA JS
 
@@ -98,14 +69,14 @@ function carritoHTML() {
   limpiarHTML();
   //recorre el carrito y genera el html
   coleccionProductos.forEach((producto) => {
-    const { imagen, nombre, precio, cantidad,id } = producto;
+    const { imagen, nombre, precio, cantidad, id } = producto;
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td><img src='${imagen}' width='100'></td>
+      <td><img src='${imagen}' width='40'></td>
       <td>${nombre}</td>
-      <td>$${precio}</td>
       <td>${cantidad}</td>
-      <td><a href="#" class="borrar-curso" data-id=${id}>X</a></td>
+      <td>$${precio}</td>
+      <td><a href="#" class="borrar-curso" data-id=${id}><ion-icon name="trash-outline" size="large"></ion-icon></a></td>
     `;
     contenedorCarrito.appendChild(row);
   });
@@ -116,14 +87,12 @@ function carritoHTML() {
   calcularSubTotal();
 }
 
-
 // CALCULA EL SUBTOTAL DE LA CANTIDAD DE PRODUCTOS SELECCIONADOS * EL PRECIO
 function calcularSubTotal() {
   subTotal = 0;
   if (coleccionProductos.length !== 0) {
     for (let producto of coleccionProductos) {
       subTotal += parseInt(producto.precio) * parseInt(producto.cantidad);
-  
     }
   } else {
     subTotal = 0;
@@ -149,19 +118,22 @@ async function calcularEnvio(e) {
     let url = `https://apis.andreani.com/v1/tarifas?cpDestino=${cp}&contrato=300006611&bultos[0][valorDeclarado]=1`;
 
     let response = await fetch(url);
-    const precio = await response.json();
-    let precioEnvio = await precio.tarifaConIva.total;
-    const costoEnvioHTML = document.querySelector("#costoEnvio");
-    costoEnvioHTML.innerText = `${precioEnvio}`;
-    total+=parseInt(precioEnvio);
-    spanTotal.innerText = total;
+    if (response.status === 200) {
+      const precio = await response.json();
+      let precioEnvio = await precio.tarifaConIva.total;
+      const costoEnvioHTML = document.querySelector("#costoEnvio");
+      costoEnvioHTML.innerText = `${precioEnvio}`;
+      total += parseInt(precioEnvio);
+      spanTotal.innerText = total;
+    } else {
+      alert("Ingrese un codigo postal valid");
+    }
   } else {
     alert("Ingrese un codigo postal");
   }
 }
 
 // ADDEVENTLISTENER
-
 
 btnAgregarCarrito.addEventListener("click", productoSeleccionado);
 btnVaciarCarrito.addEventListener("click", () => {
@@ -177,16 +149,45 @@ document.addEventListener("DOMContentLoaded", () => {
   carritoHTML();
 });
 
- // Muestra el carrito
- $("#carrito").on("click", (e) => {
- e.preventDefault(); 
- $(".carrito-compras").animate({width:'toggle'},350)});
- 
- // Oculta el carrito 
- $("#btn-cerrar-carrito").on("click", (e) => {
-  e.preventDefault(); 
-  $(".carrito-compras").animate({width:'toggle'},350)
+// JQUERY
+// Muestra la cantidad de productos seleccionados en el carrito
+function mostrarCantidadCarrito() {
+  if (coleccionProductos.length !== 0) {
+    let cantidadProductoCarrito = 0;
+    for (let producto of coleccionProductos) {
+      cantidadProductoCarrito += parseInt(producto.cantidad);
+    }
+    $("#carrito .badge").text(cantidadProductoCarrito);
+    $("#carrito .badge").show();
+  } else {
+    $("#carrito .badge").hide();
+  }
+}
+// Elimina un curso del carrito
 
+$("#lista-carrito").on("click", (e) => {
+  e.preventDefault();
+  if (e.target.name === "trash-outline") {
+    console.log(e.target.parentElement);
+    // console.log(e.target.getAttribute("data-id"));
+    const productoId = parseInt(e.target.parentElement.getAttribute("data-id"));
+    // Filtro todos los productos que sean distintos al producto con id que fue seleccionado
+    coleccionProductos = coleccionProductos.filter(
+      (prodcuto) => prodcuto.id !== productoId
+    );
+    carritoHTML();
+  }
+});
+// Muestra el carrito
+$("#carrito").on("click", (e) => {
+  e.preventDefault();
+  $(".carrito-compras").animate({ width: "toggle" }, 350);
+});
+
+// Oculta el carrito
+$("#btn-cerrar-carrito").on("click", (e) => {
+  e.preventDefault();
+  $(".carrito-compras").animate({ width: "toggle" }, 350);
 });
 
 // TO DO ornar el los productos por precio en el HTML

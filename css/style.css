@@ -1,130 +1,154 @@
-body{
-  font-family: 'Bodoni Moda', serif;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Bodoni Moda", serif;
   font-size: 20px;
 }
-h1{
+h1 {
   font-size: 4rem;
   font-weight: 600;
   line-height: 4rem;
 }
-h2{font-size: 2.5rem;margin-bottom: 1rem;}
-p{
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+p {
   font-size: 1.2rem;
-  color: #999;
+  color: #000;
   line-height: 1.8;
-  margin-bottom:0 ;
+  margin-bottom: 0;
 }
 
-section{
+section {
   padding: 5rem 0;
-
 }
 
-
-.navbar{
+.navbar {
   background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0,0, 0, .05);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
   min-height: 5rem;
 }
 
-.navbar a{
+a {
   color: #1a1a1a;
+  text-decoration: none;
 }
-.topmargin-xs{margin-top:1rem ;}
-.topmargin-sm{margin-top:2rem ;}
-.topmargin-lg{margin-top:13rem !important;}
-
-.nav-link:hover{
+.topmargin-xs {
+  margin-top: 1rem;
+}
+.topmargin-sm {
+  margin-top: 2rem;
+}
+.topmargin-lg {
+  margin-top: 13rem !important;
+}
+.btn-cerrar-menu ion-icon{
+  color: #fff;
+}
+.nav-link:hover {
   color: #ff0000;
+}
+input {
+  width: 400px;
+  padding: 10px;
 }
 
 ion-icon {
   color: #ff0000;
   /* --ionicon-stroke-width: 16px; */
 }
-.navbar-toggle {font-size: 2rem;}
-.navbar-toggle:focus{ outline: none;}
+.navbar-toggle {
+  font-size: 2rem;
+}
+.navbar-toggle:focus {
+  outline: none;
+}
 
-.logo{
+.logo {
   min-width: 8rem;
   max-width: 9rem;
 }
 
-#home{
-  background-image: url('../img/home.jpg');
+#home {
+  background-image: url("../img/home.jpg");
   background-repeat: no-repeat;
-	position: relative;
+  position: relative;
   background-position: center;
   background-size: cover;
   padding-top: 4rem;
-  min-height:  40rem;
+  min-height: 40rem;
   color: #fff;
 }
 #home::before {
-	content:'';
+  content: "";
   position: absolute;
   top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(0,0,0,0.4);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
-#home p{
+#home p {
   color: #fff;
 }
 
 .content-center {
-max-width: 40rem;
-margin: 0 auto 3rem auto;
-text-align: center;
-position: relative
+  max-width: 40rem;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+  position: relative;
 }
 
-.btn{
+.btn {
   font-size: 14px;
   padding: 15px 26px;
   min-width: 160px;
-  border-radius:2px ;
+  border-radius: 2px;
   display: inline-block;
 }
 
-.btn-l{
+.btn-l {
   background-color: #fff;
   color: #1a1a1a;
   border: 2px solid #fff;
 }
 
-#sidebar-wrapper{
-  z-index:1;
+#sidebar-wrapper {
+  z-index: 1;
   position: absolute;
-  width:0;
-  height:100%;
-  overflow-y:hidden;
+  width: 0;
+  height: 100%;
+  overflow-y: hidden;
   background: #5b4282;
-  opacity:0.9;
-	transition:all .5s;
-	display:flex;
-	align-items:center;
+  opacity: 0.9;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
 }
-#menu-toggle{
-	transition:all .3s;
-	font-size:2em;
+#menu-toggle {
+  transition: all 0.3s;
+  font-size: 2em;
 }
 
-.dropdown-menu{
-height: 100vh;
-width: 70vh;
-background-color: #F9F6F1;
+.dropdown-menu {
+  height: 100vh;
+  width: 70vh;
+  background-color: #f9f6f1;
 }
-.btn-vaciar{
+.btn-vaciar {
   background-color: #eab050;
 }
-.badge{
+.badge {
   display: none;
 }
-.carrito-compras{
+.carrito-compras {
   display: none;
-  background-color: #C5A484;
+  color: #fff;
+  background-color: #c5a484;
   position: fixed;
   top: 0;
   right: 0;
@@ -134,17 +158,48 @@ background-color: #F9F6F1;
   overflow-y: scroll;
   text-align: left;
 }
-.carrito-compras h4,h3,h5{
+.carrito-compras table{
   color: #fff;
 }
 
 
-@media (max-width: 575.98px) { h1{font-size: 2rem; line-height: normal;} }
+#contacto {
+  background-color: #3e3535;
+  color: #fff;
+}
+#contacto p{
+  color: #fff;
+}
+#contacto .card {
+  
+  background-color: #3e3535;
+  border: 0 solid;
+  background-color: none;
+  text-align: center;
+  color: #fff;
+}
+#contacto .card img {
+  width: 30%;
+  box-shadow: 5px 0 10px rgba(100, 100, 100, 0.5);
+}
+.titulo-contacto{
+  font-size: 3rem;
+}
+@media (max-width: 575.98px) {
+  h1 {
+    font-size: 2rem;
+    line-height: normal;
+  }
+}
 
-@media (max-width: 767.98px) {  }
+@media (max-width: 767.98px) {
+}
 
-@media (max-width: 991.98px) {  }
+@media (max-width: 991.98px) {
+}
 
-@media (max-width: 1199.98px) {  }
+@media (max-width: 1199.98px) {
+}
 
-@media (max-width: 1399.98px) {  }
+@media (max-width: 1399.98px) {
+}

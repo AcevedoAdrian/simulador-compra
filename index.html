@@ -42,7 +42,7 @@
             <a class="nav-link" href="#prodcuts" id='producto'>Producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="contacto">Contacto</a>
+            <a class="nav-link" href="#contacto" id="contactos">Contacto</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="carrito">
@@ -61,67 +61,76 @@
   <!-- FIN NAVBAR -->
   <section class="carrito-compras">
     <div class="container">
-      <div class="col-12">
-          
-        
-          <a href="#" id="btn-cerrar-carrito">
-            X
-          </a>
+      <div class="row">
+        <div class="col-9">
           <h4 class="text-uppercase">Carrito de compras</h4>
-    </div>
-      <hr>
+        </div>
+        <div class="col-2  pull-right text-right btn-cerrar-menu">
+          <a href="#" id="btn-cerrar-carrito">
+            <ion-icon name="close-circle-outline" size="large"></ion-icon>
+          </a>
+        </div>
 
-      <div class="col-12">
 
-        <div class="container" id="carrito">
-          <div class="col-12">
+
+        <div class="col-12">
+          <div id="carrito">
             <table id="lista-carrito" class="table table-striped  w-100 p-3">
-              <!-- <thead>
+              <thead>
                   <tr>
-                    <th scope="col">Imagen</th>
+                    <th scope="col">Productos</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
                     <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
                     <th></th>
                   </tr>
-                </thead> -->
+                </thead>
               <tbody></tbody>
             </table>
           </div>
-          <div class="col-12">
-            <hr>
-            <h5>
-              <span class="pull-left text-left">
-                Subtotal
-                <small> (sin envío)
-                </small>: </span>
-              <span class="pull-right text-right">$<span id="sub-total">0</span></span>
-            </h5>
-          </div>
-          <div class="col-12 ">
-            <hr>
-            <input type="text" name='codigo-postal' id="codigo-postal"
-              placeholder="Ingrese su codigo postal de destino">
-            <button href="#" id="calcular-envio" role="button" class="btn btn-xs">Calcular
-              Envio</button>
-            <h5 class="pt-5">
-              <span class="costo-envio">Costo del envio: </span><span id="costoEnvio"></span></span>
-            </h5>
-          </div>
-          <div class="col-12 ">
-            <hr>
 
-            <h3 class="pull-left text-left">
-              Total:
-              <small> </small>
-              :<span>$</span><span id="total">0</span></span>
-            </h3>
-          </div>
+        </div>
 
-          <div class="col-12 pt-5">
-            <a href="#" id="vaciar-carrito" role="button" class="btn  btn-lg btn-block btn-vaciar">Vaciar
-              Carrito</a>
-          </div>
+        <div class="col-6 ">
+          <span class="pull-left text-left">
+            Subtotal
+            <small> (sin envío)
+            </small>: </span>
+        </div>
+        <div class="col-5 pull-right text-right">
+          <span class="">$<span id="sub-total">0</span></span>
+        </div>
+
+        <div class="col-12 mt-3">
+          <hr>
+          <input type="number" name='codigo-postal' id="codigo-postal" placeholder="Ingrese su codigo postal">
+          <!-- <button href="#" id="calcular-envio" role="button" class="btn ">Calcular
+              Envio</button> -->
+          <a href="#" id="calcular-envio" role="button" class="btn  btn-vaciar">Calcular
+            Envio</a>
+
+        </div>
+
+
+        <div class="col-6 mt-3">
+          <h3 class="costo-envio">Costo del envio: </h3>
+        </div>
+        <div class="col-5 pull-right text-right">
+          <span id="costoEnvio"></span></span>
+        </div>
+        <div class="col-6 mt-3">
+          <h3 class="pull-left text-left">
+            Total:
+          </h3>
+        </div>
+        <div class="col-5 pull-right text-right">
+          <span>$</span><span id="total">0</span>
+        </div>
+
+
+        <div class="col-12 pt-5">
+          <a href="#" id="vaciar-carrito" role="button" class="btn  btn-lg btn-block btn-vaciar">Vaciar
+            Carrito</a>
         </div>
 
       </div>
@@ -161,6 +170,23 @@
     </div>
   </section>
 
+  <section id="contacto">
+    <div class="row">
+      <div class="container">
+        <div class="col-12 content-center mb-5 mt-4">
+          <h2 class="titulo-contacto">CONTACTANOS</h2>
+          <p>Contactate con unos de nuestros representantes para un asesoramiento personalizado.</p>
+        </div>
+        <div id="lista-usuarios" class="mt-5">
+          <div class="row row-cols-1 row-cols-md-3">
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 
 
@@ -181,6 +207,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <!-- Mi script -->
+  <script src="./js/contactos.js"></script>
   <script src="./js/productos.js"></script>
   <script src="./js/cargar-productos.js"></script>
   <script src="./js/main.js"></script>

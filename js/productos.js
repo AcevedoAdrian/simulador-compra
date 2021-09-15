@@ -42,10 +42,17 @@ const productosEnStock = [
     id: 8
   },
   {
-    nombre:'AMANDA',
-    precio:100,
-    imagen:'./img/AMANDA.jpg',
-    id: 9
+    nombre:'SALVADORA',
+    precio:300,
+    imagen:'./img/SALVADORA.jpeg',
+    id: 10
+  },
+  {
+    nombre:'JUANA',
+    precio:1300,
+    imagen:'./img/JUANA.jpeg',
+    id: 11
   }
+
 
 ]
