@@ -5,9 +5,12 @@ const btnVaciarCarrito = document.getElementById("vaciar-carrito");
 const contenedorCarrito = document.querySelector("#lista-carrito tbody");
 const btnCalcularEnvio = document.querySelector("#calcular-envio");
 const spanTotal = document.querySelector("#total");
+const msgError = document.querySelector('#msg-error');
 let coleccionProductos = [];
 let subTotal = 0;
 let total = 0;
+let precioEnvioGlobal= 0
+
 
 //FUNCIONES
 
@@ -76,7 +79,7 @@ function carritoHTML() {
       <td>${nombre}</td>
       <td>${cantidad}</td>
       <td>$${precio}</td>
-      <td><a href="#" class="borrar-curso" data-id=${id}><ion-icon name="trash-outline" size="large"></ion-icon></a></td>
+      <td><a href="#" class="borrar" data-id=${id}><ion-icon name="trash-outline" size="large"></ion-icon></a></td>
     `;
     contenedorCarrito.appendChild(row);
   });
@@ -97,7 +100,8 @@ function calcularSubTotal() {
   } else {
     subTotal = 0;
   }
-  total = subTotal;
+  total = subTotal + precioEnvioGlobal;
+  
   spanTotal.innerText = total;
   spanSubTotal.innerText = subTotal;
 }
@@ -113,24 +117,38 @@ function limpiarHTML() {
 // FUNCION CALCULA FORMA DE ENVIO, CALCULANDO EL COSTO A LA API DE ANDREANI
 async function calcularEnvio(e) {
   e.preventDefault;
+  const costoEnvioHTML = document.querySelector("#costoEnvio");
   let cp = document.querySelector("#codigo-postal").value;
+  let precioEnvio = 0;
   if (cp !== "") {
+     if(msgError.classList.contains( 'msg-visible' )){
+      msgError.classList.add("msg-oculto")     
+      msgError.classList.remove("msg-visible");
+     }
+    costoEnvioHTML.value = 0;
     let url = `https://apis.andreani.com/v1/tarifas?cpDestino=${cp}&contrato=300006611&bultos[0][valorDeclarado]=1`;
 
     let response = await fetch(url);
     if (response.status === 200) {
       const precio = await response.json();
-      let precioEnvio = await precio.tarifaConIva.total;
-      const costoEnvioHTML = document.querySelector("#costoEnvio");
-      costoEnvioHTML.innerText = `${precioEnvio}`;
-      total += parseInt(precioEnvio);
-      spanTotal.innerText = total;
+      precioEnvio =  parseInt(precio.tarifaConIva.total);      
+      
+
     } else {
-      alert("Ingrese un codigo postal valid");
+      msgError.classList.remove("msg-oculto")     
+      msgError.textContent= 'No se encontro codigo postal';
+      msgError.classList.add("msg-visible");
     }
   } else {
-    alert("Ingrese un codigo postal");
+    msgError.classList.remove("msg-oculto")    
+    msgError.textContent ='Ingrese un codigo postal';
+    msgError.classList.add("msg-visible");
   }
+      costoEnvioHTML.innerText = `$${precioEnvio}`;
+      precioEnvioGlobal = precioEnvio;
+      calcularSubTotal();
+      // total += precioEnvio;
+      spanTotal.innerText = total;
 }
 
 // ADDEVENTLISTENER
@@ -142,6 +160,7 @@ btnVaciarCarrito.addEventListener("click", () => {
   coleccionProductos = [];
   localStorage.clear();
   calcularSubTotal();
+  mostrarCantidadCarrito();
 });
 btnCalcularEnvio.addEventListener("click", calcularEnvio);
 document.addEventListener("DOMContentLoaded", () => {
@@ -163,12 +182,11 @@ function mostrarCantidadCarrito() {
     $("#carrito .badge").hide();
   }
 }
-// Elimina un curso del carrito
 
+// Elimina un producto del carrito
 $("#lista-carrito").on("click", (e) => {
   e.preventDefault();
   if (e.target.name === "trash-outline") {
-    console.log(e.target.parentElement);
     // console.log(e.target.getAttribute("data-id"));
     const productoId = parseInt(e.target.parentElement.getAttribute("data-id"));
     // Filtro todos los productos que sean distintos al producto con id que fue seleccionado
@@ -178,6 +196,7 @@ $("#lista-carrito").on("click", (e) => {
     carritoHTML();
   }
 });
+
 // Muestra el carrito
 $("#carrito").on("click", (e) => {
   e.preventDefault();
@@ -190,16 +209,3 @@ $("#btn-cerrar-carrito").on("click", (e) => {
   $(".carrito-compras").animate({ width: "toggle" }, 350);
 });
 
-// TO DO ornar el los productos por precio en el HTML
-//   ordenarProductosPorPrecio() {
-//     let porductosOrdenados = [...this.producto];
-//     porductosOrdenados.sort((a, b) => a.precio - b.precio);
-
-//     let respuestaCliente = "";
-//     for (let i = 0; i < porductosOrdenados.length; i++) {
-//       respuestaCliente = respuestaCliente.concat(
-//         ` \n ${porductosOrdenados[i].nombre} precio: $${porductosOrdenados[i].precio} - Cantidad seleccionada: ${porductosOrdenados[i].cantidad} `
-//       );
-//     }
-//     return respuestaCliente;
-//   }

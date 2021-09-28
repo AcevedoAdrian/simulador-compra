@@ -185,6 +185,14 @@ ion-icon {
 .titulo-contacto{
   font-size: 3rem;
 }
+.msg-oculto{
+  display: none;
+}
+.msg-visible{
+  display: block;
+  color: red;
+
+}
 @media (max-width: 575.98px) {
   h1 {
     font-size: 2rem;
